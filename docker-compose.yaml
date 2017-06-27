@@ -1,0 +1,16 @@
+version: '2'
+services:
+    db:
+        image: mongo:latest
+        ports:
+            - "27017:27017"
+    api:
+        build: fates-api/
+        ports:
+            - "3000:3000"
+        depends_on: 
+            - db
+    web:
+        build: fates-web/
+        ports:
+            - "8000:8000"

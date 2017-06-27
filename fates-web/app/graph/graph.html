@@ -1,0 +1,10 @@
+<div class="graph container">
+    <h2>Fractal Graph</h2>
+
+        <ul class="list-group" ng-repeat="(name, value) in graph" ng-if="name.charAt(0) != '_'">
+            <li class="list-group-item">
+                <a href="/#!/{{name}}">{{name}}</a>
+            </li>
+        </ul>
+
+</div>

@@ -1,0 +1,72 @@
+<div class="container" ng-model="character">
+    <a href="/#!/characters">back to characters</a>
+    <h2 class="character-name" ng-bind="character.identity.name"></h2>
+    <ul class="list-group">
+        <li class="list-group-item" class="character-id">
+            <div class="character-description" ng-bind="character.identity.description"></div>
+        </li>
+        <li class="character-refresh list-group-item">
+            <div class="row">
+                <div class="col-md-1">
+                    <h4>Fate</h4>
+                    <p ng-bind="character.refresh.current"></p>
+                </div>
+                <div class="col-md-1">
+                    <h4>Refresh</h4>
+                    <p ng-bind="character.refresh.total"></p>
+                </div>
+            </div>
+        </li>
+        <li class="character-aspects list-group-item">
+            <h4>Aspects</h4>
+            <ul class="list-group" ng-repeat="(idx, aspect) in character.aspects">
+                <li class="character-aspect list-group-item">
+                    <div>
+                        <button class="btn" ng-click="invoke(aspect, idx)">Invoke</button>
+                        <span ng-bind="aspect.name"></span>
+                        <span ng-if="aspect.tags.length > 0">[<span ng-bind="aspect.tags"></span>]</span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="character-skills list-group-item">
+            <h4>Skills</h4>
+            <div ng-if="activeInvokes.length > 0">
+                Invokes used: <span ng-bind="activeInvokes.length"></span>
+                <ul ng-repeat="aspect in activeInvokes">
+                    <li ng-bind="aspect.name"></li>
+                </ul>
+            </div>
+            <ul class="list-group" ng-repeat="(idx, skill) in character.skills" ng-if="skill.skills.length > 0">
+                <li class="list-group-item">
+                    <div>
+                        <span ng-bind="skill.name"></span> (<span ng-bind="idx"></span>+):
+                        <span ng-repeat="skillDef in skill.skills">
+                            <button class="btn" ng-bind="skillDef.name" ng-click="checkSkill(skill, skillDef, idx)"></button>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="character-stunts list-group-item">
+            <h4>Stunts</h4>
+            <ul class="list-group" ng-repeat="stunt in character.stunts">
+                <li class="list-group-item" ng-bind="stunt.name" ></li>
+            </ul>
+        </li>
+        <li class="character-stress-tracks list-group-item">
+            <h4>Stress Tracks</h4>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3" style="border: 1px solid black; padding: 10px; max-width:125px; margin-right:10px;" ng-repeat="stressTrack in character.stressTracks">
+                        <div ng-bind="stressTrack.name"></div>
+                        <div style="display: inline-block; border: 1px solid black; width: 20px; margin-right:5px; text-align:center;" ng-repeat="(idx, stressBox) in stressTrack.levels" ng-if="idx > 0">
+                            <span ng-bind="idx"></span>
+                            <span ng-if="stressBox.checked">C</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

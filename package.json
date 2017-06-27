@@ -1,0 +1,13 @@
+{
+  "name": "fates",
+  "version": "0.0.1",
+  "Description": "Implementation of Fate Core mechanics in Node as a REST API",
+  "scripts": {
+    "start-api": "[ ! -f api.pid ] && (cd fates-api && node app/app.js & echo $! > api.pid)",
+    "stop-api": "[ -f api.pid ] && pkill -P $(cat api.pid) && rm api.pid",
+    "start-web": "[ ! -f web.pid ] && (cd fates-web && npm start & echo $! > web.pid)",
+    "stop-web": "[ -f web.pid ] && pkill -P $(cat web.pid) && rm web.pid",
+    "start": "npm run start-api && npm run start-web",
+    "stop": "npm run stop-api && npm run stop-web"
+  }
+}

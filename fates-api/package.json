@@ -1,0 +1,16 @@
+{
+  "name": "fates-api",
+  "version": "0.0.1",
+  "Description": "Implementation of Fate Core mechanics in Node as a REST API",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node app/app.js"
+  },
+  "dependencies": {
+    "kcors": "^2.2.1",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1",
+    "mongoose": "^4.11.0"
+  }
+}

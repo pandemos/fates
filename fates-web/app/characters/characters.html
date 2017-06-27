@@ -1,0 +1,33 @@
+<div class="characters container">
+    <div><a href="/#!/graph">back to graph</a></div>
+    <h2>Characters</h2>
+
+    <div ng-repeat="(idx, character) in graph.characters">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="/#!/character/{{idx}}" ng-bind="character.identity.name"></a>
+                <div class="btn-group" ng-click="console.log(s.name)">
+                    <button class="add-to-active-action-btn btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Add to Action <span class=""caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="skill in allSkills(character)">
+                            <button ng-bind="skill.name" ng-click="addToActiveAction(character, skill)"></button>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-if="activeActionCharacters.length > 0">
+        <p>Staging an active roll between:</p>
+        <ul>
+            <li><span ng-bind="activeActionCharacters[0].name"></span> using <span ng-bind="activeActionCharacters[0].skill.name"></span> (+<span ng-bind="activeActionCharacters[0].skill.skillValue"></span>)</li>
+            <li ng-if="activeActionCharacters.length == 2"><span ng-bind="activeActionCharacters[1].name"></span> using <span ng-bind="activeActionCharacters[1].skill.name"></span> (+<span ng-bind="activeActionCharacters[1].skill.skillValue"></span>)</li>
+        </ul>
+
+        <button class="active-action-btn btn" ng-click="activeAction()" disabled="disabled">Roll</button>
+    </div>
+
+</div>
